@@ -7,6 +7,12 @@ app = Flask("Emotion Detector")
 def emo_detector():
     text_to_analyze = request.args.get('textToAnalyze')
     response = emotion_detector(text_to_analyze)
+
+    # If input is invalid or API fails
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!"
+
+    # If valid, return formatted result
     return """{
 "anger": %s, 
 "disgust": %s, 
@@ -23,10 +29,11 @@ def emo_detector():
         response['dominant_emotion']
     )
 
+
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5002)
 
