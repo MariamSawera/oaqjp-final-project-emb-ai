@@ -6,7 +6,7 @@
 #     response = requests.post(URL, json=myobj, headers=headers) 
 #     return response.text  
 
-convert the response text into a dictionary using json library function
+# convert the response text into a dictionary using json library function
 import requests  
 import json  
 
